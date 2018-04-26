@@ -3,6 +3,7 @@ package ui.anwesome.com.linetoarrowview
 /**
  * Created by anweshmishra on 26/04/18.
  */
+import android.app.Activity
 import android.view.*
 import android.content.*
 import android.graphics.*
@@ -133,6 +134,13 @@ class LineToArrowView (ctx : Context) : View(ctx) {
                 animator.start()
             }
         }
+    }
 
+    companion object {
+        fun create(activity : Activity) : LineToArrowView  {
+            val view : LineToArrowView = LineToArrowView(activity)
+            activity.setContentView(view)
+            return view
+        }
     }
 }
