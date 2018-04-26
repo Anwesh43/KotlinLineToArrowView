@@ -104,4 +104,28 @@ class LineToArrowView (ctx : Context) : View(ctx) {
             state.startUpdating(startcb)
         }
     }
+
+    data class Renderer (var view : LineToArrowView) {
+
+        private val animator : Animator = Animator(view)
+
+        private val lineToArrow : LineToArrow = LineToArrow(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(Color.parseColor("#212121"))
+            lineToArrow.draw(canvas, paint)
+            animator.animate {
+                lineToArrow.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lineToArrow.startUpdating {
+                animator.start()
+            }
+        }
+
+    }
 }
