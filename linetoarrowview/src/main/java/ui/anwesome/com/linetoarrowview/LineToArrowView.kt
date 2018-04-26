@@ -97,7 +97,7 @@ class LineToArrowView (ctx : Context) : View(ctx) {
             for (i in 0..1) {
                 canvas.save()
                 canvas.scale(1f - 2 * i, 1f)
-                canvas.translate(h/2 * state.scales[2], 0f)
+                canvas.translate((h/2 + h/30) * state.scales[2], 0f)
                 val sy : Float = (size/2)
                 for (j in 0..1) {
                     canvas.drawLine(0f, sy * (1 - 2 * j), size * state.scales[0], 0f, paint)
