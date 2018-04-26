@@ -73,4 +73,35 @@ class LineToArrowView (ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class LineToArrow (var i : Int, val state : State = State()) {
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            val w : Float = canvas.width.toFloat()
+            val h : Float = canvas.height.toFloat()
+            val size : Float = Math.min(w, h) / 15
+            canvas.save()
+            canvas.translate(w/2, h/2)
+            canvas.rotate(90f * state.scales[1])
+            for (i in 0..1) {
+                canvas.save()
+                canvas.scale(1f - 2 * i, 1f)
+                canvas.translate(h/2 * state.scales[2], 0f)
+                val sy : Float = (size/2)
+                for (j in 0..1) {
+                    canvas.drawLine(0f, sy * (1 - 2 * j), size * state.scales[0], 0f, paint)
+                }
+                canvas.restore()
+            }
+            canvas.restore()
+        }
+
+        fun update(stopcb : (Float) -> Unit) {
+            state.update(stopcb)
+        }
+
+        fun startUpdating(startcb : () -> Unit) {
+            state.startUpdating(startcb)
+        }
+    }
 }
