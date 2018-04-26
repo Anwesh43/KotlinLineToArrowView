@@ -88,6 +88,9 @@ class LineToArrowView (ctx : Context) : View(ctx) {
             val w : Float = canvas.width.toFloat()
             val h : Float = canvas.height.toFloat()
             val size : Float = Math.min(w, h) / 15
+            paint.color = Color.parseColor("#2ecc71")
+            paint.strokeWidth = Math.min(w, h)/60
+            paint.strokeCap = Paint.Cap.ROUND
             canvas.save()
             canvas.translate(w/2, h/2)
             canvas.rotate(90f * state.scales[1])
